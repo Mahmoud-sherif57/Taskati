@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:taskati/features/home/presentation/widgets/home_header.dart';
 
-class HoweView extends StatefulWidget {
-  const HoweView({super.key});
+class HomeView extends StatefulWidget {
+  const HomeView({super.key});
 
   @override
-  State<HoweView> createState() => _HoweViewState();
+  State<HomeView> createState() => _HomeViewState();
 }
 
-class _HoweViewState extends State<HoweView> {
+class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
     return const SafeArea(

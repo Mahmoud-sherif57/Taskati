@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:taskati/core/services/local_storage.dart';
 import 'package:taskati/core/utils/colors.dart';
 import 'package:taskati/features/splash_view.dart';
 
-void main() {
+Future<void> main() async {
+  // hive initialization.
+  await Hive.initFlutter();
+  AppLocalStorage().init();
+  await Hive.openBox('userInfo');
   runApp(const MainApp());
 }
 

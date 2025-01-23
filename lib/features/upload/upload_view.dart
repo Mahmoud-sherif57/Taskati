@@ -6,6 +6,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:taskati/core/constants/assets_images.dart';
 import 'package:taskati/core/functions/custom_dialog.dart';
 import 'package:taskati/core/functions/routing.dart';
+import 'package:taskati/core/services/local_storage.dart';
 import 'package:taskati/core/utils/text_style.dart';
 import 'package:taskati/core/widgets/custom_button.dart';
 import 'package:taskati/features/home/presentation/view/howe_view.dart';
@@ -42,8 +43,10 @@ class _UploadViewState extends State<UploadView> {
                 //4-no userImage & no userName
                 if (imagePath != null && userName.isNotEmpty) {
                   // cache data and navigate ..
-                  
-                  AppRouting.navigateWithReplacement(const HoweView(), context);
+                  AppLocalStorage.setCachDate("name", userName);
+                  AppLocalStorage.setCachDate("image", imagePath);
+                  AppLocalStorage.setCachDate("isUpload", true);
+                  AppRouting.navigateWithReplacement(const HomeView(), context);
                 } else if (imagePath == null && userName.isNotEmpty) {
                   showErrorDialog(context, "please, Enter your image");
                 } else if (imagePath != null && userName.isEmpty) {
@@ -91,7 +94,6 @@ class _UploadViewState extends State<UploadView> {
                     setState(() {
                       userName = value;
                     });
-                    print(value);
                   },
                 ),
               ],

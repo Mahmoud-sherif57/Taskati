@@ -7,14 +7,19 @@ environment:
   sdk: ^3.5.1
 
 dependencies:
+  built_value_generator: 8.9.2
   flutter:
     sdk: flutter
   gap: ^3.0.1
   google_fonts: ^6.2.1
+  hive_ce: ^2.9.0
+  hive_flutter: ^1.1.0
   image_picker: ^1.1.2
   lottie: ^3.2.0
 
 dev_dependencies:
+  hive_generator: 
+  build_runner:
   flutter_lints: ^4.0.0
   flutter_test:
     sdk: flutter
