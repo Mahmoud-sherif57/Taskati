@@ -3,13 +3,17 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:taskati/core/services/local_storage.dart';
 import 'package:taskati/core/utils/colors.dart';
+import 'package:taskati/features/add_task/data/task_model.dart';
 import 'package:taskati/features/splash_view.dart';
 
 Future<void> main() async {
   // hive initialization.
   await Hive.initFlutter();
-  AppLocalStorage().init();
   await Hive.openBox('userInfo');
+  Hive.registerAdapter(
+      TaskModelAdapter()); // we use this line to save an object
+  await Hive.openBox<TaskModel>('taskInfo');
+  AppLocalStorage().init();
   runApp(const MainApp());
 }
 
@@ -26,6 +30,9 @@ class MainApp extends StatelessWidget {
           appBarTheme: const AppBarTheme(backgroundColor: AppColors.white),
           fontFamily: GoogleFonts.poppins().fontFamily,
           inputDecorationTheme: InputDecorationTheme(
+            // constraints: const BoxConstraints(maxHeight: 60),
+            contentPadding:
+                const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
             enabledBorder: OutlineInputBorder(
               borderSide: const BorderSide(color: AppColors.primary),
               borderRadius: BorderRadius.circular(10),

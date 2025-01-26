@@ -22,7 +22,7 @@ class AppRouting {
     );
   }
 
-  static  pop(BuildContext context) {
+  static pop(BuildContext context) {
     return Navigator.of(context).canPop();
   }
 }

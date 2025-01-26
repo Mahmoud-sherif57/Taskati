@@ -6,24 +6,24 @@ import 'package:taskati/core/services/local_storage.dart';
 import 'package:taskati/core/utils/colors.dart';
 import 'package:taskati/core/utils/text_style.dart';
 
-class HomeHeader extends StatefulWidget {
-  const HomeHeader({
+class HomeHeaderWidget extends StatefulWidget {
+  const HomeHeaderWidget({
     super.key,
   });
 
   @override
-  State<HomeHeader> createState() => _HomeHeaderState();
+  State<HomeHeaderWidget> createState() => _HomeHeaderWidgetState();
 }
 
-class _HomeHeaderState extends State<HomeHeader> {
-  String? imagePath ;
+class _HomeHeaderWidgetState extends State<HomeHeaderWidget> {
+  String? imagePath;
   String userName = "";
 
   @override
   void initState() {
     super.initState();
-    userName = AppLocalStorage.getCachDate("name");
-    imagePath = AppLocalStorage.getCachDate("image");
+    userName = AppLocalStorage.getCachData("name");
+    imagePath = AppLocalStorage.getCachData("image");
   }
 
   @override
@@ -39,8 +39,8 @@ class _HomeHeaderState extends State<HomeHeader> {
                   color: AppColors.primary, fontWeight: FontWeight.bold),
             ),
             Text(
-              "Have a nice day",
-              style: getTitleStyle(fontSize: 15),
+              "Have a Nice Day",
+              style: getSmallStyle(fontSize: 16),
             ),
           ],
         ),

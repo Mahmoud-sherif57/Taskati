@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:taskati/core/utils/colors.dart';
+import 'package:taskati/core/utils/text_style.dart';
 
-class CustomButton extends StatelessWidget {
-  const CustomButton({
-    super.key, required this.text,required this.onPressed, this.width, this.height,
+class CustomButtonWidget extends StatelessWidget {
+  const CustomButtonWidget({
+    super.key,
+    required this.text,
+    required this.onPressed,
+    this.width,
+    this.height,
   });
   final String text;
   final Function() onPressed;
@@ -22,7 +27,11 @@ class CustomButton extends StatelessWidget {
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10))),
           onPressed: onPressed,
-          child: Text(text)),
+          child: Text(
+            text,
+            style: getBodyStyle(
+                color: AppColors.white, fontWeight: FontWeight.bold),
+          )),
     );
   }
 }

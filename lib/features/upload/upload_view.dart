@@ -9,7 +9,7 @@ import 'package:taskati/core/functions/routing.dart';
 import 'package:taskati/core/services/local_storage.dart';
 import 'package:taskati/core/utils/text_style.dart';
 import 'package:taskati/core/widgets/custom_button.dart';
-import 'package:taskati/features/home/presentation/view/howe_view.dart';
+import 'package:taskati/features/home/presentation/view/home_view.dart';
 
 String? imagePath;
 String userName = "";
@@ -43,9 +43,9 @@ class _UploadViewState extends State<UploadView> {
                 //4-no userImage & no userName
                 if (imagePath != null && userName.isNotEmpty) {
                   // cache data and navigate ..
-                  AppLocalStorage.setCachDate("name", userName);
-                  AppLocalStorage.setCachDate("image", imagePath);
-                  AppLocalStorage.setCachDate("isUpload", true);
+                  AppLocalStorage.setCachData("name", userName);
+                  AppLocalStorage.setCachData("image", imagePath);
+                  AppLocalStorage.setCachData("isUpload", true);
                   AppRouting.navigateWithReplacement(const HomeView(), context);
                 } else if (imagePath == null && userName.isNotEmpty) {
                   showErrorDialog(context, "please, Enter your image");
@@ -72,17 +72,17 @@ class _UploadViewState extends State<UploadView> {
                       : const AssetImage(AppImages.userProfile),
                 ),
                 const Gap(20),
-                CustomButton(
+                CustomButtonWidget(
                   text: "upload from camera",
                   onPressed: () {
-                    uploadFromCamera();
+                    uploadImage(isCamera: true);
                   },
                 ),
                 const Gap(20),
-                CustomButton(
+                CustomButtonWidget(
                     text: "upload from Gallery",
                     onPressed: () {
-                      uploadFromGallery();
+                      uploadImage(isCamera: false);
                     }),
                 const Gap(20),
                 const Divider(),
@@ -104,21 +104,9 @@ class _UploadViewState extends State<UploadView> {
     );
   }
 
-  uploadFromCamera() async {
-    final pickedImage =
-        await ImagePicker().pickImage(source: ImageSource.camera);
-
-    if (pickedImage != null) {
-      setState(() {
-        imagePath = pickedImage.path;
-      });
-    }
-  }
-
-  uploadFromGallery() async {
-    final pickedImage =
-        await ImagePicker().pickImage(source: ImageSource.gallery);
-
+  uploadImage({required bool isCamera}) async {
+    final pickedImage = await ImagePicker()
+        .pickImage(source: isCamera ? ImageSource.camera : ImageSource.gallery);
     if (pickedImage != null) {
       setState(() {
         imagePath = pickedImage.path;
