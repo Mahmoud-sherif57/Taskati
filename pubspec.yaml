@@ -12,6 +12,7 @@ dependencies:
   date_picker_timeline: ^1.2.6
   flutter:
     sdk: flutter
+  flutter_native_splash: ^2.4.4
   gap: ^3.0.1
   google_fonts: ^6.2.1
   hive_ce: ^2.9.0
@@ -26,6 +27,19 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   hive_generator: null
+
+flutter_native_splash:
+  color: "#4E5AE8"
+  image: assets\images\app_logo.png
+  color_dark: "#4E5AE8"
+  image_dark: assets\images\app_logo.png
+
+  android_12:
+    image: assets\images\app_logo.png
+    icon_background_color: "#4E5AE8"
+    image_dark: assets\images\app_logo.png
+    icon_background_color_dark: "#4E5AE8"
+
 
 flutter:
   uses-material-design: true
