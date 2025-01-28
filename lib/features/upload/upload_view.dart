@@ -6,12 +6,13 @@ import 'package:image_picker/image_picker.dart';
 import 'package:taskati/core/constants/assets_images.dart';
 import 'package:taskati/core/functions/custom_dialog.dart';
 import 'package:taskati/core/functions/routing.dart';
+import 'package:taskati/core/services/cach_keys.dart';
 import 'package:taskati/core/services/local_storage.dart';
 import 'package:taskati/core/utils/text_style.dart';
 import 'package:taskati/core/widgets/custom_button.dart';
 import 'package:taskati/features/home/presentation/view/home_view.dart';
 
-String? imagePath;
+String imagePath = "";
 String userName = "";
 
 class UploadView extends StatefulWidget {
@@ -30,7 +31,7 @@ class _UploadViewState extends State<UploadView> {
         // backgroundColor: AppColors.primary,
         title: Text(
           "Upload Data",
-          style: getTitleStyle(fontSize: 25),
+          style: getTitleStyle(context, fontSize: 25),
         ),
         centerTitle: true,
         actions: [
@@ -41,15 +42,15 @@ class _UploadViewState extends State<UploadView> {
                 //2- no userImage
                 //3- no userName
                 //4-no userImage & no userName
-                if (imagePath != null && userName.isNotEmpty) {
+                if (userName.isNotEmpty) {
                   // cache data and navigate ..
-                  AppLocalStorage.setCachData("name", userName);
-                  AppLocalStorage.setCachData("image", imagePath);
-                  AppLocalStorage.setCachData("isUpload", true);
+                  AppLocalStorage.setCachData(CachKeys.name, userName);
+                  AppLocalStorage.setCachData(CachKeys.image, imagePath);
+                  AppLocalStorage.setCachData(CachKeys.isUpload, true);
                   AppRouting.navigateWithReplacement(const HomeView(), context);
-                } else if (imagePath == null && userName.isNotEmpty) {
+                } else if (imagePath.isNotEmpty && userName.isNotEmpty) {
                   showErrorDialog(context, "please, Enter your image");
-                } else if (imagePath != null && userName.isEmpty) {
+                } else if (userName.isEmpty) {
                   showErrorDialog(context, "please, Enter your name");
                 } else {
                   showErrorDialog(context, "please, Enter your name & image");
@@ -67,8 +68,8 @@ class _UploadViewState extends State<UploadView> {
               children: [
                 CircleAvatar(
                   radius: 90,
-                  backgroundImage: (imagePath != null)
-                      ? FileImage(File(imagePath!))
+                  backgroundImage: (imagePath.isNotEmpty)
+                      ? FileImage(File(imagePath)) as ImageProvider
                       : const AssetImage(AppImages.userProfile),
                 ),
                 const Gap(20),

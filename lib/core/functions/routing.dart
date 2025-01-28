@@ -4,7 +4,6 @@ class AppRouting {
   static Future navigateTo(Widget newScreen, BuildContext context) {
     return Navigator.of(context).push(
       MaterialPageRoute(builder: (context) => newScreen),
-      
     );
   }
 

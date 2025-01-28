@@ -1,12 +1,13 @@
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:taskati/core/services/boxes_name.dart';
 import 'package:taskati/features/add_task/data/task_model.dart';
 
 class AppLocalStorage {
   static late Box userBox;
   static late Box<TaskModel> taskBox;
   init() {
-    userBox = Hive.box('userInfo');
-    taskBox = Hive.box<TaskModel>('taskInfo');
+    userBox = Hive.box(BoxesName.userInfo);
+    taskBox = Hive.box<TaskModel>(BoxesName.taskInfo);
   }
 
   static setCachData(key, value) {

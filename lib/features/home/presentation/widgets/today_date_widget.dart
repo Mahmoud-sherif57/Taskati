@@ -19,21 +19,23 @@ class TodayDateAndAddTaskWidget extends StatelessWidget {
           children: [
             Text(
               DateFormat.yMMMMd().format(DateTime.now()),
-              style: getTitleStyle(),
+              style: getTitleStyle(
+                context,
+              ),
             ),
             Text(
               "Today",
-              style: getTitleStyle(fontSize: 15),
+              style: getTitleStyle(context, fontSize: 15),
             ),
           ],
         ),
         const Spacer(),
         CustomButtonWidget(
-          text: "+ Add Task",
+          text: "+ AddTask",
           onPressed: () {
             AppRouting.navigateWithReplacement(const AddTaskView(), context);
           },
-          width: 130,
+          width: 140,
         ),
       ],
     );

@@ -3,6 +3,7 @@ import 'package:gap/gap.dart';
 import 'package:lottie/lottie.dart';
 import 'package:taskati/core/constants/assets_images.dart';
 import 'package:taskati/core/functions/routing.dart';
+import 'package:taskati/core/services/cach_keys.dart';
 import 'package:taskati/core/services/local_storage.dart';
 import 'package:taskati/core/utils/colors.dart';
 import 'package:taskati/core/utils/text_style.dart';
@@ -20,7 +21,7 @@ class _SplashViewState extends State<SplashView> {
   @override
   void initState() {
     super.initState();
-    bool isUpload = AppLocalStorage.getCachData("isUpload") ?? false;
+    bool isUpload = AppLocalStorage.getCachData(CachKeys.isUpload) ?? false;
 
     Future.delayed(
       const Duration(seconds: 4),
@@ -41,14 +42,16 @@ class _SplashViewState extends State<SplashView> {
             Lottie.asset(AppImages.appLogo, animate: true),
             const Gap(20),
             Text('Taskati',
-                style: getTitleStyle(
+                style: getTitleStyle(context,
                     fontSize: 30,
                     color: AppColors.primary,
                     fontWeight: FontWeight.bold)),
             const Gap(20),
             Text(
               'It\'s time to Get Organized ',
-              style: getBodyStyle(),
+              style: getBodyStyle(
+                context,
+              ),
             ),
           ],
         ),
