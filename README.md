@@ -44,7 +44,7 @@ Contributions are welcome! If you'd like to improve this project, feel free to f
 
 ## Contact
 
-For any inquiries or suggestions, feel free to reach out via [your email] or open an issue on GitHub.
+For any inquiries or suggestions, feel free to reach out via [mahmoudshrief388@gmail.com] or open an issue on GitHub.
 
 
 
