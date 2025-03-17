@@ -17,7 +17,7 @@ Taskati is a Flutter-based to-do application designed to help users manage their
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/taskati.git
+   https://github.com/Mahmoud-sherif57/Taskati.git
    ```
 2. **Navigate to the project directory**
    ```bash
